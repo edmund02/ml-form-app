@@ -23,6 +23,7 @@ class CreationForm extends React.Component {
 
    componentDidMount() {
       const { form } = this.props;
+      // get the form data from reducer and set to state
       this.setState({ ...form, loading: false })
    }
 
@@ -30,7 +31,8 @@ class CreationForm extends React.Component {
       const { formIsReset, form, updateResetStatus } = this.props;
       const { questionsLayout, lockAutoScroll } = this.state;
 
-      // make sure the form in props state is synced
+      // make sure the form in props state is synced (triggered when reset button is pressed)
+      // this can be done at onResetForm function as well, but I am using componentDidUpdate to showcase state management
       if (prevProps.formIsReset === false && formIsReset === true) {
          this.setState({ ...form });
          updateResetStatus();
@@ -112,6 +114,7 @@ class CreationForm extends React.Component {
       this.setState({ questions: newQuestions });
    }
 
+   // update checkbox option's label
    onChangeOptionLabel = (label, questionIndex, inputIndex) => {
       const { questions } = this.state;
 
@@ -120,6 +123,7 @@ class CreationForm extends React.Component {
       this.setState({ questions: newQuestions });
    }
 
+   // add checkbox option
    onAddOption = (questionIndex) => {
       const { questions } = this.state;
 
@@ -133,6 +137,7 @@ class CreationForm extends React.Component {
       this.setState({ questions: newQuestions });
    }
 
+   // delete checkbox option
    onDeleteOption = (questionIndex, inputIndex) => {
       const { questions } = this.state;
 
@@ -141,6 +146,7 @@ class CreationForm extends React.Component {
       this.setState({ questions: newQuestions });
    }
 
+   // validate form data and store into redux
    onSaveForm = async () => {
       const { saveForm } = this.props;
       const { title, description, questions, questionsLayout } = this.state;
@@ -197,11 +203,13 @@ class CreationForm extends React.Component {
       saveForm({ title, description, questions });
    }
 
+   // reset the form
    onResetForm = () => {
       const { resetForm } = this.props;
       resetForm();
    }
 
+   // scroll the screen to the designated position and add error indication if needed
    executeScroll = (index, isError) => {
       const { questionsLayout } = this.state;
       if (isError) {
@@ -220,6 +228,7 @@ class CreationForm extends React.Component {
       }
    };
 
+   // set the Y coordinate for each question (to be used in scrolling)
    onAddLayout = (y, questionIndex) => {
       const { questionsLayout } = this.state;
       this.setState({ questionsLayout: { ...questionsLayout, [questionIndex]: { ...questionsLayout[questionIndex], y: y } } })

@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native'
-import { Card, Button, Text, TextInput, Menu, useTheme, Switch, Checkbox, Title } from "react-native-paper";
+import { Card, Text, TextInput, useTheme, Switch, Checkbox, Title } from "react-native-paper";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Ionicons } from '@expo/vector-icons';
-import { code } from '../../constants';
 import { formatDate } from '../../helper';
 
 const PreviewQuestion = ({
@@ -15,6 +14,7 @@ const PreviewQuestion = ({
 
    let inputExample = <></>
 
+   // decide which type of input to display
    switch (questionDetail.inputDetail.key) {
       case 1000:
          inputExample = (

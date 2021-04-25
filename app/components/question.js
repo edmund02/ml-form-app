@@ -57,6 +57,7 @@ const Question = ({
 
    let inputExample = <></>
 
+   // decide which type of input/input example to display
    switch (questionDetail.inputDetail.key) {
       case 1000:
          inputExample = (

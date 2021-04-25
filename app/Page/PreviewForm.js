@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import { StyleSheet, ScrollView, View, Platform } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import { Card, Button, ActivityIndicator, Title, Text } from "react-native-paper";
 import { saveFormAction, resetFormAction, updateResetStatusAction } from '../../actions';
 import { PreviewQuestion } from '../components'
@@ -20,19 +20,21 @@ class PreviewForm extends React.Component {
    }
 
    componentDidMount() {
-      this.onUpdateState();
+      this.onInitiateState();
    }
 
    // implemented this earlier before I find out that I can set trigger unmount in tab navigator
    // componentDidUpdate(prevProps) {
    //    const { formIsUpdated } = this.props;
    //    if (prevProps.formIsUpdated === false && formIsUpdated === true) {
-   //       this.onUpdateState();
+   //       this.onInitiateState();
    //    }
    // }
 
 
-   onUpdateState = async () => {
+   // bring in the form data from reducer and set to local state
+   // define the default answer's value
+   onInitiateState = async () => {
       const { form } = this.props;
       await this.setState({ loading: true });
       let newAnswers = [];
@@ -96,7 +98,8 @@ class PreviewForm extends React.Component {
    };
 
    onResetForm = () => {
-      this.onUpdateState();
+      this.onInitiateState();
+      alert(`Your form's answer(s) are reset!`);
    }
 
    onSubmit = async () => {
@@ -139,6 +142,7 @@ class PreviewForm extends React.Component {
       alert('All inputs are valid, submitted!');
    }
 
+   // scroll the screen to the designated position and add error indication if needed
    executeScroll = (index, isError) => {
       const { questionsLayout } = this.state;
       if (isError) {
@@ -157,6 +161,7 @@ class PreviewForm extends React.Component {
       }
    };
 
+   // set the Y coordinate for each question (to be used in scrolling)
    onUpdateLayout = (y, questionIndex) => {
       const { questionsLayout } = this.state;
       this.setState({ questionsLayout: { ...questionsLayout, [questionIndex]: { ...questionsLayout[questionIndex], y: y } } })
@@ -166,7 +171,7 @@ class PreviewForm extends React.Component {
       const { formAvailable, navigation } = this.props;
       const { title, description, questions, questionsLayout, loading, answers } = this.state;
       return (
-         loading ?
+         loading ? 
             <View style={styles.loading}>
                <ActivityIndicator animating={true} />
             </View>

@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
             formAvailable: true,
          }
       case RESET_FORM:
-         alert('Your form is reset now!');
+         alert('Your form is reset!');
          return {
             ...state,
             form: initialState.form,
