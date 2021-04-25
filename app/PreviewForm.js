@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import { StyleSheet, ScrollView, View, Platform } from 'react-native';
 import { Card, Button, ActivityIndicator, Title, Text } from "react-native-paper";
-import { saveFormAction, resetFormAction, updateResetStatusAction, updateFormStatusAction } from '../actions';
+import { saveFormAction, resetFormAction, updateResetStatusAction } from '../actions';
 import { PreviewQuestion } from './components'
 
 class PreviewForm extends React.Component {
@@ -239,9 +239,7 @@ const mapStateToProps = state => {
    return ({
       count: state.app.count,
       form: state.app.form,
-      formIsReset: state.app.formIsReset,
       formAvailable: state.app.formAvailable,
-      formIsUpdated: state.app.formIsUpdated,
    });
 }
 
@@ -250,7 +248,6 @@ const mapDispatchToProps = dispatch => ({
    saveForm: bindActionCreators(saveFormAction, dispatch),
    resetForm: bindActionCreators(resetFormAction, dispatch),
    updateResetStatus: bindActionCreators(updateResetStatusAction, dispatch),
-   updateFormStatus: bindActionCreators(updateFormStatusAction, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PreviewForm)

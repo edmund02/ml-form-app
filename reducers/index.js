@@ -2,7 +2,6 @@ import {
    SAVE_FORM,
    RESET_FORM,
    UPDATE_RESET_STATUS,
-   UPDATE_FORM_STATUS,
 } from '../constants';
 
 
@@ -15,7 +14,6 @@ const initialState = {
    },
    formAvailable: false,
    formIsReset: false,
-   formIsUpdated: false,
 };
 
 export default function (state = initialState, action) {
@@ -26,7 +24,6 @@ export default function (state = initialState, action) {
             ...state,
             form: action.payload,
             formAvailable: true,
-            formIsUpdated: true,
          }
       case RESET_FORM:
          alert('Your form is reset now!');
@@ -40,11 +37,6 @@ export default function (state = initialState, action) {
          return {
             ...state,
             formIsReset: false
-         }
-      case UPDATE_FORM_STATUS:
-         return {
-            ...state,
-            formIsUpdated: false
          }
       default:
          return state;
