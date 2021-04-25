@@ -212,7 +212,6 @@ const Question = ({
          {/* Input example */}
          {inputExample}
 
-         <Divider />
 
          {/* Footer */}
          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
