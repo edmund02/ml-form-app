@@ -30,7 +30,7 @@ const Header = ({
                </Button>}
          >
             {
-               code.inputType.map(e => (
+               code.inputDetail.map(e => (
                   <Menu.Item key={`dropdown${e.key}`} onPress={() => onChangeInputType({ ...e })} title={e.name} />
                ))
             }
@@ -57,13 +57,13 @@ const Question = ({
 
    let inputExample = <></>
 
-   switch (questionDetail.inputType.key) {
+   switch (questionDetail.inputDetail.key) {
       case 1000:
          inputExample = (
             <>
                <TextInput
                   style={[styles.input, styles.inputDisabled]}
-                  placeholder={questionDetail.inputType.name}
+                  placeholder={questionDetail.inputDetail.name}
                   disabled
                />
             </>
@@ -75,7 +75,7 @@ const Question = ({
 
                <TextInput
                   style={[styles.input, styles.inputDisabled]}
-                  placeholder={questionDetail.inputType.name}
+                  placeholder={questionDetail.inputDetail.name}
                   multiline
                   disabled
                />
@@ -87,7 +87,7 @@ const Question = ({
             <>
                <TextInput
                   style={[styles.input, styles.inputDisabled]}
-                  placeholder={questionDetail.inputType.name}
+                  placeholder={questionDetail.inputDetail.name}
                   disabled
                />
             </>
@@ -98,7 +98,7 @@ const Question = ({
             <>
                <TextInput
                   style={[styles.input, styles.inputDisabled]}
-                  placeholder={questionDetail.inputType.name}
+                  placeholder={questionDetail.inputDetail.name}
                   disabled
                />
             </>
@@ -119,7 +119,7 @@ const Question = ({
          inputExample = (
             <>
                <View style={{ margin: 10, flexDirection: 'column' }}>
-                  {questionDetail.inputType.optionLabel.map(((e, i) => (
+                  {questionDetail.inputDetail.optionLabel.map(((e, i) => (
                      <View key={`checkboxes${questionIndex}${i}`} style={{ flexDirection: 'row' }}>
                         <Checkbox
                            style={{ flex: 1 }}
@@ -169,7 +169,7 @@ const Question = ({
                <TextInput
                   style={[styles.input, styles.inputDisabled, { flex: 1 }]}
                   value={formatDate(new Date())}
-                  placeholder={questionDetail.inputType.name}
+                  placeholder={questionDetail.inputDetail.name}
                   disabled
                />
             </View>
@@ -189,7 +189,7 @@ const Question = ({
       >
          {/* Header */}
          <Header
-            name={questionDetail.inputType.name}
+            name={questionDetail.inputDetail.name}
             visible={menuVisibile}
             setMenuVisibile={(e) => setMenuVisibile(e)}
             onChangeInputType={onChangeInputType}

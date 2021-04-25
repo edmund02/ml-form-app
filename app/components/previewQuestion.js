@@ -15,16 +15,16 @@ const PreviewQuestion = ({
 
    let inputExample = <></>
 
-   switch (questionDetail.inputType.key) {
+   switch (questionDetail.inputDetail.key) {
       case 1000:
          inputExample = (
             <>
                <TextInput
                   style={[styles.input, styles.inputDisabled]}
-                  placeholder={questionDetail.inputType.name}
+                  placeholder={questionDetail.inputDetail.name}
                   value={answer}
                   onChangeText={value => onChangeAnswer(value)}
-                  keyboardType={questionDetail.inputType.keyboardType}
+                  keyboardType={questionDetail.inputDetail.keyboardType}
                />
             </>
          )
@@ -35,10 +35,10 @@ const PreviewQuestion = ({
 
                <TextInput
                   style={[styles.input, styles.inputDisabled]}
-                  placeholder={questionDetail.inputType.name}
+                  placeholder={questionDetail.inputDetail.name}
                   value={answer}
                   onChangeText={value => onChangeAnswer(value)}
-                  keyboardType={questionDetail.inputType.keyboardType}
+                  keyboardType={questionDetail.inputDetail.keyboardType}
                   multiline
                />
             </>
@@ -49,10 +49,10 @@ const PreviewQuestion = ({
             <>
                <TextInput
                   style={[styles.input, styles.inputDisabled]}
-                  placeholder={questionDetail.inputType.name}
+                  placeholder={questionDetail.inputDetail.name}
                   value={answer}
                   onChangeText={value => onChangeAnswer(value)}
-                  keyboardType={questionDetail.inputType.keyboardType}
+                  keyboardType={questionDetail.inputDetail.keyboardType}
                />
             </>
          )
@@ -62,10 +62,10 @@ const PreviewQuestion = ({
             <>
                <TextInput
                   style={[styles.input, styles.inputDisabled]}
-                  placeholder={questionDetail.inputType.name}
+                  placeholder={questionDetail.inputDetail.name}
                   value={answer}
                   onChangeText={value => onChangeAnswer(value)}
-                  keyboardType={questionDetail.inputType.keyboardType}
+                  keyboardType={questionDetail.inputDetail.keyboardType}
                />
             </>
          )
@@ -85,7 +85,7 @@ const PreviewQuestion = ({
          inputExample = (
             <>
                <View style={{ margin: 10, flexDirection: 'column' }}>
-                  {questionDetail.inputType.optionLabel.map(((e, i) => (
+                  {questionDetail.inputDetail.optionLabel.map(((e, i) => (
                      <View key={`checkboxes${questionIndex}${i}`} style={{ flexDirection: 'row' }}>
                         <Checkbox
                            style={{ flex: 1 }}
@@ -122,7 +122,7 @@ const PreviewQuestion = ({
                      <TextInput
                         style={[styles.input, styles.inputDisabled, { flex: 1 }]}
                         value={answer ? formatDate(new Date(answer)) : ''}
-                        placeholder={questionDetail.inputType.name}
+                        placeholder={questionDetail.inputDetail.name}
                         disabled
                      />
                   </TouchableOpacity>

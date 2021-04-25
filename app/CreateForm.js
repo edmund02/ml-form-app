@@ -49,7 +49,7 @@ class CreationForm extends React.Component {
 
       newQuestions.push({
          title: `Question ${questions.length + 1}`,
-         inputType: { ...code.inputType[0] },
+         inputDetail: { ...code.inputDetail[0] },
          isRequired: false,
       });
       this.setState({ questions: newQuestions, lockAutoScroll: false });
@@ -82,16 +82,16 @@ class CreationForm extends React.Component {
       this.setState({ questions: newQuestions, questionsLayout: newQuestionsLayout });
    }
 
-   onChangeInputType = (inputType, questionIndex) => {
+   onChangeInputType = (inputDetail, questionIndex) => {
       const { questions } = this.state;
 
       let newQuestions = [...questions];
-      if (inputType.key === 1005) {
-         newQuestions[questionIndex].inputType = { ...inputType, optionLabel: [''] };
-      } else if (inputType.key === 1006) {
-         newQuestions[questionIndex].inputType = { ...inputType, show: false };
+      if (inputDetail.key === 1005) {
+         newQuestions[questionIndex].inputDetail = { ...inputDetail, optionLabel: [''] };
+      } else if (inputDetail.key === 1006) {
+         newQuestions[questionIndex].inputDetail = { ...inputDetail, show: false };
       } else {
-         newQuestions[questionIndex].inputType = { ...inputType };
+         newQuestions[questionIndex].inputDetail = { ...inputDetail };
       }
       this.setState({ questions: newQuestions });
    }
@@ -116,7 +116,7 @@ class CreationForm extends React.Component {
       const { questions } = this.state;
 
       let newQuestions = [...questions];
-      newQuestions[questionIndex].inputType.optionLabel[inputIndex] = label;
+      newQuestions[questionIndex].inputDetail.optionLabel[inputIndex] = label;
       this.setState({ questions: newQuestions });
    }
 
@@ -124,12 +124,12 @@ class CreationForm extends React.Component {
       const { questions } = this.state;
 
       let newQuestions = [...questions];
-      for (let i = 0; i < newQuestions[questionIndex].inputType.optionLabel.length; i++) {
-         if (!newQuestions[questionIndex].inputType.optionLabel[i]) {
-            newQuestions[questionIndex].inputType.optionLabel[i] = `Option ${i + 1}`;
+      for (let i = 0; i < newQuestions[questionIndex].inputDetail.optionLabel.length; i++) {
+         if (!newQuestions[questionIndex].inputDetail.optionLabel[i]) {
+            newQuestions[questionIndex].inputDetail.optionLabel[i] = `Option ${i + 1}`;
          }
       }
-      newQuestions[questionIndex].inputType.optionLabel.push('')
+      newQuestions[questionIndex].inputDetail.optionLabel.push('')
       this.setState({ questions: newQuestions });
    }
 
@@ -137,17 +137,9 @@ class CreationForm extends React.Component {
       const { questions } = this.state;
 
       let newQuestions = [...questions];
-      newQuestions[questionIndex].inputType.optionLabel.splice(inputIndex, 1);
+      newQuestions[questionIndex].inputDetail.optionLabel.splice(inputIndex, 1);
       this.setState({ questions: newQuestions });
    }
-
-   // showDatePicker = (questionIndex) => {
-   //    const { questions } = this.state;
-
-   //    let newQuestions = [...questions];
-   //    newQuestions[questionIndex].inputType.optionLabel.splice(inputIndex, 1);
-   //    this.setState({ questions: newQuestions });
-   // };
 
    onSaveForm = async () => {
       const { saveForm } = this.props;
@@ -179,13 +171,13 @@ class CreationForm extends React.Component {
             this.executeScroll(i, true);
             return alert(`Please fill in question title for Question (${i + 1}.)`);
          }
-         if (questions[i].inputType.key === 1005) {
-            if (questions[i].inputType.optionLabel.length <= 0) {
+         if (questions[i].inputDetail.key === 1005) {
+            if (questions[i].inputDetail.optionLabel.length <= 0) {
                this.executeScroll(i, true);
                return alert(`Please add at least 1 option for Question (${i + 1}.)`);
             }
             let uniqueLabel = [];
-            for (const optionLabel of questions[i].inputType.optionLabel) {
+            for (const optionLabel of questions[i].inputDetail.optionLabel) {
                if (!optionLabel) {
                   this.executeScroll(i, true);
                   return alert(`Please fill in all options' label in Question (${i + 1}.)`);
@@ -268,13 +260,13 @@ class CreationForm extends React.Component {
                {questions.map((element, index) => (
 
                   <Question
-                     key={`${element.inputType.key}${index}`}
+                     key={`${element.inputDetail.key}${index}`}
                      questionDetail={element}
                      questionIndex={index}
                      questionLayout={questionsLayout[index] ? questionsLayout[index] : {}}
                      onChangeTitle={(title) => this.onChangeQuestionTitle(title, index)}
                      onChangeIsRequired={(value) => this.onChangeIsRequired(value, index)}
-                     onChangeInputType={(inputType) => this.onChangeInputType(inputType, index)}
+                     onChangeInputType={(inputDetail) => this.onChangeInputType(inputDetail, index)}
                      onDeleteQuestion={() => this.onDeleteQuestion(index)}
                      onChangeOptionLabel={(title, inputIndex) => this.onChangeOptionLabel(title, index, inputIndex)}
                      onAddOption={() => this.onAddOption(index)}

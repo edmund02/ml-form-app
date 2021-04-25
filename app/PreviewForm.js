@@ -37,13 +37,13 @@ class PreviewForm extends React.Component {
       await this.setState({ loading: true });
       let newAnswers = [];
       for (const question of form.questions) {
-         if (question.inputType.key === 1005) {
+         if (question.inputDetail.key === 1005) {
             let temp = [];
-            for (const option of question.inputType.optionLabel) {
+            for (const option of question.inputDetail.optionLabel) {
                temp.push(false);
             }
             newAnswers.push(temp);
-         } else if (question.inputType.key === 1004) {
+         } else if (question.inputDetail.key === 1004) {
             newAnswers.push(false);
          } else {
             newAnswers.push('');
@@ -56,7 +56,7 @@ class PreviewForm extends React.Component {
       const { answers, questions } = this.state;
 
       let newAnswers = [...answers];
-      if (questions[questionIndex].inputType.key === 1005) {
+      if (questions[questionIndex].inputDetail.key === 1005) {
          newAnswers[questionIndex][optionIndex] = answer;
       } else {
          newAnswers[questionIndex] = answer;
@@ -118,15 +118,15 @@ class PreviewForm extends React.Component {
       for (let i = 0; i < questions.length; i++) {
 
          // check for empty input
-         if ([1000, 1001, 1002, 1003, 1006].includes(questions[i].inputType.key) && questions[i].isRequired && !answers[i]) {
+         if ([1000, 1001, 1002, 1003, 1006].includes(questions[i].inputDetail.key) && questions[i].isRequired && !answers[i]) {
             this.executeScroll(i, true);
             return alert(`Question ${i + 1}. is required to answer.`);
          }
 
          // check numeric
-         if (questions[i].inputType.regexp && !questions[i].inputType.regexp.test(answers[i])) {
+         if (questions[i].inputDetail.regexp && !questions[i].inputDetail.regexp.test(answers[i])) {
             this.executeScroll(i, true);
-            return alert(questions[i].inputType.errorMessage.replace('{q}', i + 1));
+            return alert(questions[i].inputDetail.errorMessage.replace('{q}', i + 1));
          }
 
       }
@@ -194,7 +194,7 @@ class PreviewForm extends React.Component {
                      </Card>
                      {questions.map((element, index) => (
                         <PreviewQuestion
-                           key={`${element.inputType.key}${index}`}
+                           key={`${element.inputDetail.key}${index}`}
                            questionDetail={element}
                            answer={answers[index]}
                            questionIndex={index}
