@@ -84,9 +84,9 @@ class PreviewForm extends React.Component {
       for (let i = 0; i < questions.length; i++) {
 
          // check for empty input
-         if ([1000, 1001, 1002, 1003].includes(questions[i].inputType.key) && !answers[i]) {
+         if ([1000, 1001, 1002, 1003].includes(questions[i].inputType.key) && questions[i].isRequired &&  !answers[i]) {
             this.executeScroll(i, true);
-            return alert(`Please fill in Question (${i + 1}.)`);
+            return alert(`Question ${i + 1}. is required to answer.`);
          }
 
          // check numeric
