@@ -4,50 +4,6 @@ import { Card, Button, Text, TextInput, Menu, useTheme, Switch, Checkbox, Title 
 import { Ionicons } from '@expo/vector-icons';
 import { code } from '../../constants';
 
-
-
-const Header = ({
-   styles,
-   name, visible, questionIndex,
-   setMenuVisibile, onChangeInputType, onDeleteQuestion }) => {
-   const { colors } = useTheme();
-   return (
-      <View style={{ ...styles.flexRowSpaceAround, margin: 10 }}>
-         <Title style={{ marginRight: 15, flex: 1 }}>{questionIndex + 1}.</Title>
-         <Menu
-            visible={visible}
-            onDismiss={() => setMenuVisibile(false)}
-            anchor={
-               <Button
-                  style={{ flex: 1, marginRight: 10 }}
-                  mode="outlined"
-                  onPress={() => setMenuVisibile(true)}
-                  uppercase={false}
-               >
-                  <Text color={colors.primary} ellipsizeMode='tail'>
-                     {name}
-                  </Text>
-                  <Ionicons name='caret-down' color={colors.primary} />
-               </Button>}
-         >
-            {
-               code.inputType.map(e => (
-                  <Menu.Item key={`dropdown${e.key}`} onPress={() => onChangeInputType({ ...e })} title={e.name} />
-               ))
-            }
-         </Menu>
-         <Button
-            mode="text"
-            onPress={onDeleteQuestion}
-            uppercase={false}
-            compact
-         >
-            <Ionicons name='trash' color={colors.primary} size={20} />
-         </Button>
-      </View>
-   )
-}
-
 const PreviewQuestion = ({
    styles,
    questionDetail, questionIndex, questionLayout, answer,
@@ -155,7 +111,7 @@ const PreviewQuestion = ({
          }}
       >
          {/* Question Title*/}
-         <Title style={{ ...styles.input, flex: 1 }}>{`${questionIndex + 1}. ${questionDetail.title}`}</Title>
+         <Title style={{ ...styles.input, flex: 1 }}>{`${questionIndex + 1}. ${questionDetail.title}`}&nbsp;{questionDetail.isRequired && <Text style={styles.red}>*</Text>}</Title>
 
          {inputExample}
       </Card>

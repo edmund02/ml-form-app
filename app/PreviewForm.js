@@ -155,6 +155,8 @@ class PreviewForm extends React.Component {
                      <Card style={[styles.container, styles.shadow, styles.borderTop]}>
                         <Title style={styles.title}>{title}</Title>
                         <Text>{description}</Text>
+                        
+                        <Text style={{ color: 'red', marginTop: 15 }}>* Required</Text>
                      </Card>
                      {questions.map((element, index) => (
                         <PreviewQuestion
@@ -166,13 +168,15 @@ class PreviewForm extends React.Component {
                            onChangeAnswer={(value, optionIndex) => this.onChangeAnswer(value, index, optionIndex)}
                            onUpdateLayout={(y) => this.onUpdateLayout(y, index)}
                            styles={{
-                              container: styles.container,
-                              shadow: styles.shadow,
-                              input: styles.input,
-                              inputDisabled: styles.inputDisabled,
-                              flexRowSpaceAround: styles.flexRowSpaceAround,
-                              flexRowCenter: styles.flexRowCenter,
-                              isError: styles.isError,
+                              // container: styles.container,
+                              // shadow: styles.shadow,
+                              // input: styles.input,
+                              // inputDisabled: styles.inputDisabled,
+                              // flexRowSpaceAround: styles.flexRowSpaceAround,
+                              // flexRowCenter: styles.flexRowCenter,
+                              // isError: styles.isError,
+                              // red: styles.red,
+                              ...styles,
                            }}
                         />
                      ))
@@ -283,5 +287,8 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       flexDirection: "row",
       justifyContent: "space-around",
+   },
+   red: {
+      color: 'red',
    },
 });

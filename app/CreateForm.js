@@ -271,13 +271,14 @@ class CreationForm extends React.Component {
                      onDeleteOption={(inputIndex) => this.onDeleteOption(index, inputIndex)}
                      onAddLayout={(y) => this.onAddLayout(y, index)}
                      styles={{
-                        container: styles.container,
-                        shadow: styles.shadow,
-                        input: styles.input,
-                        inputDisabled: styles.inputDisabled,
-                        flexRowSpaceAround: styles.flexRowSpaceAround,
-                        flexRowCenter: styles.flexRowCenter,
-                        isError: styles.isError,
+                        // container: styles.container,
+                        // shadow: styles.shadow,
+                        // input: styles.input,
+                        // inputDisabled: styles.inputDisabled,
+                        // flexRowSpaceAround: styles.flexRowSpaceAround,
+                        // flexRowCenter: styles.flexRowCenter,
+                        // isError: styles.isError,
+                        ...styles
                      }}
                   />
                ))}
