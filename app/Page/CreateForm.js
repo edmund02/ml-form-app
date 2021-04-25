@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { StyleSheet, ScrollView, View } from 'react-native';
 import { Card, Button, ActivityIndicator, TextInput } from "react-native-paper";
 import { Ionicons } from '@expo/vector-icons';
-import { saveFormAction, resetFormAction, updateResetStatusAction } from '../actions';
-import { code } from '../constants'
-import { Question } from './components'
+import { saveFormAction, resetFormAction, updateResetStatusAction } from '../../actions';
+import { code } from '../../constants'
+import { Question } from '../components'
 
 class CreationForm extends React.Component {
    constructor(props) {

@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import { StyleSheet, ScrollView, View, Platform } from 'react-native';
 import { Card, Button, ActivityIndicator, Title, Text } from "react-native-paper";
-import { saveFormAction, resetFormAction, updateResetStatusAction } from '../actions';
-import { PreviewQuestion } from './components'
+import { saveFormAction, resetFormAction, updateResetStatusAction } from '../../actions';
+import { PreviewQuestion } from '../components'
 
 class PreviewForm extends React.Component {
    constructor(props) {
@@ -119,6 +119,11 @@ class PreviewForm extends React.Component {
 
          // check for empty input
          if ([1000, 1001, 1002, 1003, 1006].includes(questions[i].inputDetail.key) && questions[i].isRequired && !answers[i]) {
+            this.executeScroll(i, true);
+            return alert(`Question ${i + 1}. is required to answer.`);
+         }
+
+         if (questions[i].inputDetail.key === 1005 && questions[i].isRequired && !answers[i].find(e => (e))) {
             this.executeScroll(i, true);
             return alert(`Question ${i + 1}. is required to answer.`);
          }

@@ -3,8 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from "react-native-paper";
-import CreateForm from './CreateForm';
-import PreviewForm from './PreviewForm';
+import CreateForm from './Page/CreateForm';
+import PreviewForm from './Page/PreviewForm';
 
 const Tab = createBottomTabNavigator();
 
