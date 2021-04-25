@@ -5,7 +5,6 @@
   <h1 align="center">Form Builder App</h1>
 </p>
 
-<!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
@@ -13,14 +12,13 @@
          <a href="#introduction">Introduction</a>
          <ul>
             <li><a href="#built-with">Built With</a></li>
+            <li><a href="#important-directory">Important Directory</a></li>
          </ul>
       </li>
       <li><a href="#tools-version">Tools version</a></li>
       <li><a href="#run-the-project">Run the project</a></li>
   </ol>
 </details>
-
-<!-- ABOUT THE PROJECT -->
 
 ## Introduction
 
@@ -39,7 +37,32 @@ Besides, I am using [Expo](https://expo.io/) to run the project. It is extremely
 - Redux
 - Expo
 
-<!-- GETTING STARTED -->
+## Important Directory
+Only showing important directory
+
+```
+ml-form-app
+│   README.md  
+│   App.js  // root file, define theme and initiate store & reducer
+│
+└───actions // actions that update reducers' state
+│   │   index.js
+│   
+└───app  // UI 
+│    │   App.js // tab navigator
+│    │
+│    └───components  // UI component
+│    │
+│    └───Page  // main pages UI
+│
+└───constants   // hardcoded variable
+│
+└───helper  // function to be reused
+│
+└───reducers
+│
+└───store
+```
 
 ## Tools version
 
