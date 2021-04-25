@@ -49,24 +49,29 @@ Besides, I am using [Expo](https://expo.io/) to run the project. It is extremely
 
 ## Run the project
 
-1. Install all the required packages.
+1. Install expo globally.
+   ```
+   yarn global add expo
+   ```
+
+2. Install all the required packages.
    ```
    yarn
    ```
 
-2. While waiting for the installation process to complete. Download the Expo Go on your mobile.
+3. While waiting for the installation process to complete. Download the Expo Go on your mobile.
    - [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en&gl=US)
    - [Apple App Store](https://apps.apple.com/us/app/expo-go/id982107779)
 
-3. Start the application in development environment.
+4. Start the application in development environment.
    ```
    yarn start
    ```
    This will start the application with Expo
 
-4. Scan the QR on the Expo developer tools UI on your browser to run the app in your mobile device. You may switch between:-
+5. Scan the QR on the Expo developer tools UI on your browser to run the app in your mobile device. You may switch between:-
    - Tunnel: Connect from everywhere
    - LAN: Connect with the same WIFI
    - Local: Connect on local device
 
-5. Start playing around!
+6. Start playing around!

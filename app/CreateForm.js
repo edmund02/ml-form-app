@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { StyleSheet, ScrollView, View } from 'react-native';
 import { Card, Button, ActivityIndicator, TextInput } from "react-native-paper";
 import { Ionicons } from '@expo/vector-icons';
-import { changeCountAction, saveFormAction, resetFormAction, updateResetStatusAction } from '../actions';
+import { saveFormAction, resetFormAction, updateResetStatusAction } from '../actions';
 import { code } from '../constants'
 import { Question } from './components'
 
@@ -17,6 +17,7 @@ class CreationForm extends React.Component {
          questions: [],
          questionsLayout: {},
          loading: true,
+         lockAutoScroll: true,
       }
    }
 
@@ -27,7 +28,7 @@ class CreationForm extends React.Component {
 
    componentDidUpdate(prevProps, prevState) {
       const { formIsReset, form, updateResetStatus } = this.props;
-      const { questionsLayout } = this.state;
+      const { questionsLayout, lockAutoScroll } = this.state;
 
       // make sure the form in props state is synced
       if (prevProps.formIsReset === false && formIsReset === true) {
@@ -36,7 +37,7 @@ class CreationForm extends React.Component {
       }
 
       // scroll to newly added question
-      if (Object.keys(prevState.questionsLayout).length < Object.keys(questionsLayout).length) {
+      if (Object.keys(prevState.questionsLayout).length < Object.keys(questionsLayout).length && !lockAutoScroll) {
          this.executeScroll(Object.keys(questionsLayout).length - 1);
       }
    }
@@ -51,7 +52,7 @@ class CreationForm extends React.Component {
          inputType: { ...code.inputType[0] },
          isRequired: false,
       });
-      this.setState({ questions: newQuestions });
+      this.setState({ questions: newQuestions, lockAutoScroll: false });
    }
 
    onDeleteQuestion = (questionIndex) => {
@@ -314,7 +315,6 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps = dispatch => ({
-   changeCount: bindActionCreators(changeCountAction, dispatch),
    saveForm: bindActionCreators(saveFormAction, dispatch),
    resetForm: bindActionCreators(resetFormAction, dispatch),
    updateResetStatus: bindActionCreators(updateResetStatusAction, dispatch),

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import { StyleSheet, ScrollView, View } from 'react-native';
 import { Card, Button, ActivityIndicator, Title, Text } from "react-native-paper";
-import { changeCountAction, saveFormAction, resetFormAction, updateResetStatusAction, updateFormStatusAction } from '../actions';
+import { saveFormAction, resetFormAction, updateResetStatusAction, updateFormStatusAction } from '../actions';
 import { PreviewQuestion } from './components'
 
 class PreviewForm extends React.Component {
@@ -217,7 +217,6 @@ const mapStateToProps = state => {
 
 
 const mapDispatchToProps = dispatch => ({
-   changeCount: bindActionCreators(changeCountAction, dispatch),
    saveForm: bindActionCreators(saveFormAction, dispatch),
    resetForm: bindActionCreators(resetFormAction, dispatch),
    updateResetStatus: bindActionCreators(updateResetStatusAction, dispatch),
