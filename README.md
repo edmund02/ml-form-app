@@ -25,9 +25,9 @@
 
 ## About The Project
 
-This is my very first React Native project (previously have ReactJS experience only). I have learnt and explored the difference between ReactJS and React Native such as ReactJS uses [React Router](https://reactrouter.com/web/guides/quick-start) to navigate from page to page while React Native uses [React Navigation](https://reactnavigation.org/). 
+This is my very first React Native project (previously have ReactJS experience only). I have learnt and explored the difference between ReactJS and React Native such as ReactJS uses [React Router](https://reactrouter.com/web/guides/quick-start) to navigate from page to page while React Native uses [React Navigation](https://reactnavigation.org/).
 
-This React Native application is tested on android (basically my phone) only. It is not tested on any other devices such as tablet and iOS (because I do not own one of those devices). 
+This React Native application is **only** tested on android (my phone only basically). It is not tested on any other devices such as tablet and iOS or even other android device.
 
 Besides, I am using [Expo](https://expo.io/) to run the project. It is extremely easy to set up and run the project with Expo.
 
@@ -50,26 +50,32 @@ Besides, I am using [Expo](https://expo.io/) to run the project. It is extremely
 ## Run the project
 
 1. Install expo globally.
+
    ```
    yarn global add expo
    ```
 
 2. Install all the required packages.
+
    ```
    yarn
    ```
 
-3. While waiting for the installation process to complete. Download the Expo Go on your mobile.
+3. While waiting for the installation process to complete, download the necessary Expo Go app on your mobile:-
+
    - [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en&gl=US)
    - [Apple App Store](https://apps.apple.com/us/app/expo-go/id982107779)
 
-4. Start the application in development environment.
+4. Once the package installation is complete, start the application in development environment.
+
    ```
    yarn start
    ```
+
    This will start the application with Expo
 
-5. Scan the QR on the Expo developer tools UI on your browser to run the app in your mobile device. You may switch between:-
+5. Open up your Expo Go app on your mobile, press 'Scan QR Code' to scan the QR on the Expo developer tools UI on your browser. You may press `r` on the terminal/cmd (wherever you run the project) to reload the app if you are facing any issue. You may switch the QR for:-
+
    - Tunnel: Connect from everywhere
    - LAN: Connect with the same WIFI
    - Local: Connect on local device
