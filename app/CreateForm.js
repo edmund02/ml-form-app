@@ -88,6 +88,8 @@ class CreationForm extends React.Component {
       let newQuestions = [...questions];
       if (inputType.key === 1005) {
          newQuestions[questionIndex].inputType = { ...inputType, optionLabel: [''] };
+      } else if (inputType.key === 1006) {
+         newQuestions[questionIndex].inputType = { ...inputType, show: false };
       } else {
          newQuestions[questionIndex].inputType = { ...inputType };
       }
@@ -138,6 +140,14 @@ class CreationForm extends React.Component {
       newQuestions[questionIndex].inputType.optionLabel.splice(inputIndex, 1);
       this.setState({ questions: newQuestions });
    }
+
+   // showDatePicker = (questionIndex) => {
+   //    const { questions } = this.state;
+
+   //    let newQuestions = [...questions];
+   //    newQuestions[questionIndex].inputType.optionLabel.splice(inputIndex, 1);
+   //    this.setState({ questions: newQuestions });
+   // };
 
    onSaveForm = async () => {
       const { saveForm } = this.props;
@@ -271,13 +281,6 @@ class CreationForm extends React.Component {
                      onDeleteOption={(inputIndex) => this.onDeleteOption(index, inputIndex)}
                      onAddLayout={(y) => this.onAddLayout(y, index)}
                      styles={{
-                        // container: styles.container,
-                        // shadow: styles.shadow,
-                        // input: styles.input,
-                        // inputDisabled: styles.inputDisabled,
-                        // flexRowSpaceAround: styles.flexRowSpaceAround,
-                        // flexRowCenter: styles.flexRowCenter,
-                        // isError: styles.isError,
                         ...styles
                      }}
                   />

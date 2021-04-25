@@ -3,8 +3,7 @@ import { View } from 'react-native'
 import { Card, Button, Text, TextInput, Menu, useTheme, Switch, Checkbox, Title, Divider } from "react-native-paper";
 import { Ionicons } from '@expo/vector-icons';
 import { code } from '../../constants';
-
-
+import { formatDate } from '../../helper';
 
 const Header = ({
    styles,
@@ -158,6 +157,24 @@ const Question = ({
             </>
          )
          break;
+      case 1006:
+         inputExample = (
+            <View style={{ flexDirection: 'row' }}>
+               <Ionicons
+                  style={{ margin: 10, marginTop: 35 }}
+                  size={25} name='calendar'
+                  color={colors.primary}
+                  disabled
+               />
+               <TextInput
+                  style={[styles.input, styles.inputDisabled, { flex: 1 }]}
+                  value={formatDate(new Date())}
+                  placeholder={questionDetail.inputType.name}
+                  disabled
+               />
+            </View>
+         )
+         break;
       default:
          inputExample = <></>;
    }
@@ -180,7 +197,7 @@ const Question = ({
             styles={styles}
             questionIndex={questionIndex}
          />
-         
+
          <Divider />
 
          {/* Question Title */}

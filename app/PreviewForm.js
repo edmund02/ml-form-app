@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View, Platform } from 'react-native';
 import { Card, Button, ActivityIndicator, Title, Text } from "react-native-paper";
 import { saveFormAction, resetFormAction, updateResetStatusAction, updateFormStatusAction } from '../actions';
 import { PreviewQuestion } from './components'
@@ -52,6 +52,7 @@ class PreviewForm extends React.Component {
 
    onChangeAnswer = (answer, questionIndex, optionIndex) => {
       const { answers, questions } = this.state;
+
       let newAnswers = [...answers];
       if (questions[questionIndex].inputType.key === 1005) {
          newAnswers[questionIndex][optionIndex] = answer;
@@ -60,6 +61,37 @@ class PreviewForm extends React.Component {
       }
       this.setState({ answers: newAnswers });
    }
+
+   onChangeDateShow = (questionIndex) => {
+      const { questions } = this.state;
+
+      let newQuestions = [...questions];
+      newQuestions[questionIndex].show = true;
+      this.setState({ questions: newQuestions });
+   }
+
+   onChangeDate = (event, value, questionIndex) => {
+      const { answers, questions } = this.state;
+
+      let newQuestions = [...questions];
+      newQuestions[questionIndex].show = false;
+
+      let newAnswers = [...answers];
+      const selectedDate = value || '';
+
+      newAnswers[questionIndex] = selectedDate.toString();
+
+      this.setState({ questions: newQuestions, answers: newAnswers });
+   };
+
+   onClearDate = (questionIndex) => {
+      const { answers } = this.state;
+
+      let newAnswers = [...answers];
+      newAnswers[questionIndex] = '';
+
+      this.setState({ answers: newAnswers });
+   };
 
    onResetForm = () => {
       this.onUpdateState();
@@ -84,7 +116,7 @@ class PreviewForm extends React.Component {
       for (let i = 0; i < questions.length; i++) {
 
          // check for empty input
-         if ([1000, 1001, 1002, 1003].includes(questions[i].inputType.key) && questions[i].isRequired &&  !answers[i]) {
+         if ([1000, 1001, 1002, 1003, 1006].includes(questions[i].inputType.key) && questions[i].isRequired && !answers[i]) {
             this.executeScroll(i, true);
             return alert(`Question ${i + 1}. is required to answer.`);
          }
@@ -125,7 +157,6 @@ class PreviewForm extends React.Component {
    render() {
       const { formAvailable, navigation } = this.props;
       const { title, description, questions, questionsLayout, loading, answers } = this.state;
-
       return (
          loading ?
             <View style={styles.loading}>
@@ -155,7 +186,7 @@ class PreviewForm extends React.Component {
                      <Card style={[styles.container, styles.shadow, styles.borderTop]}>
                         <Title style={styles.title}>{title}</Title>
                         <Text>{description}</Text>
-                        
+
                         <Text style={{ color: 'red', marginTop: 15 }}>* Required</Text>
                      </Card>
                      {questions.map((element, index) => (
@@ -166,16 +197,11 @@ class PreviewForm extends React.Component {
                            questionIndex={index}
                            questionLayout={questionsLayout[index] ? questionsLayout[index] : {}}
                            onChangeAnswer={(value, optionIndex) => this.onChangeAnswer(value, index, optionIndex)}
+                           onChangeDateShow={() => this.onChangeDateShow(index)}
+                           onChangeDate={(event, selectedDate) => this.onChangeDate(event, selectedDate, index)}
+                           onClearDate={() => this.onClearDate(index)}
                            onUpdateLayout={(y) => this.onUpdateLayout(y, index)}
                            styles={{
-                              // container: styles.container,
-                              // shadow: styles.shadow,
-                              // input: styles.input,
-                              // inputDisabled: styles.inputDisabled,
-                              // flexRowSpaceAround: styles.flexRowSpaceAround,
-                              // flexRowCenter: styles.flexRowCenter,
-                              // isError: styles.isError,
-                              // red: styles.red,
                               ...styles,
                            }}
                         />

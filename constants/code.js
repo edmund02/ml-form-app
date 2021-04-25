@@ -6,5 +6,6 @@ export default {
       { key: 1003, name: 'Email', keyboardType: 'email-address', errorMessage: `Invalid email in Question {q}. \nExample: edmund@moneylion.com`, regexp: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ },
       { key: 1004, name: 'Boolean' },
       { key: 1005, name: 'Checkboxes' },
+      { key: 1006, name: 'Date' },
    ]
 }
