@@ -129,7 +129,7 @@ class PreviewForm extends React.Component {
          }
 
          // check numeric
-         if (questions[i].inputDetail.regexp && !questions[i].inputDetail.regexp.test(answers[i])) {
+         if (questions[i].inputDetail.regexp && answers[i] && !questions[i].inputDetail.regexp.test(answers[i])) {
             this.executeScroll(i, true);
             return alert(questions[i].inputDetail.errorMessage.replace('{q}', i + 1));
          }
