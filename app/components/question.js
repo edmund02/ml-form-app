@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native'
-import { Card, Button, Text, TextInput, Menu, useTheme, Switch, Checkbox, Title } from "react-native-paper";
+import { Card, Button, Text, TextInput, Menu, useTheme, Switch, Checkbox, Title, Divider } from "react-native-paper";
 import { Ionicons } from '@expo/vector-icons';
 import { code } from '../../constants';
 
@@ -180,6 +180,8 @@ const Question = ({
             styles={styles}
             questionIndex={questionIndex}
          />
+         
+         <Divider />
 
          {/* Question Title */}
          <TextInput
@@ -192,6 +194,8 @@ const Question = ({
 
          {/* Input example */}
          {inputExample}
+
+         <Divider />
 
          {/* Footer */}
          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
