@@ -10,12 +10,11 @@
   <summary>Table of Contents</summary>
   <ol>
       <li>
-         <a href="#getting-started">About the project</a>
+         <a href="#introduction">Introduction</a>
          <ul>
             <li><a href="#built-with">Built With</a></li>
          </ul>
       </li>
-      <li><a href="#getting-started">About the project</a></li>
       <li><a href="#tools-version">Tools version</a></li>
       <li><a href="#run-the-project">Run the project</a></li>
   </ol>
@@ -23,7 +22,7 @@
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+## Introduction
 
 This is my very first React Native project (previously have ReactJS experience only). I have learnt and explored the difference between ReactJS and React Native such as ReactJS uses [React Router](https://reactrouter.com/web/guides/quick-start) to navigate from page to page while React Native uses [React Navigation](https://reactnavigation.org/).
 
@@ -63,8 +62,8 @@ Besides, I am using [Expo](https://expo.io/) to run the project. It is extremely
 
 3. While waiting for the installation process to complete, download the necessary Expo Go app on your mobile:-
 
-   - [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en&gl=US)
-   - [Apple App Store](https://apps.apple.com/us/app/expo-go/id982107779)
+   - <a href="https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en&gl=US" target='_blank'>Google Play Store</a>
+   - <a href="https://apps.apple.com/us/app/expo-go/id982107779" target='_blank'>Apple App Store</a>
 
 4. Once the package installation is complete, start the application in development environment.
 
