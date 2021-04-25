@@ -1,8 +1,8 @@
 <br />
 <p align="center">
-   <img src="assets/icon.png" alt="Logo" width="80" height="80">
+   <!-- <img src="assets/icon.png" alt="Logo" width="80" height="80"> -->
 
-  <h3 align="center">MoneyLion: The Take Home Challenge</h3>
+  <h1 align="center">Form Builder App</h1>
 
   <!-- <p align="center">
     An awesome README template to jumpstart your projects!
