@@ -102,7 +102,15 @@ class CreationForm extends React.Component {
       this.setState({ questions: newQuestions });
    }
 
-   onChangeInputLabel = (label, questionIndex, inputIndex) => {
+   onChangeIsRequired = (value, questionIndex) => {
+      const { questions } = this.state;
+
+      let newQuestions = [...questions];
+      newQuestions[questionIndex].isRequired = value;
+      this.setState({ questions: newQuestions });
+   }
+
+   onChangeOptionLabel = (label, questionIndex, inputIndex) => {
       const { questions } = this.state;
 
       let newQuestions = [...questions];
@@ -255,9 +263,10 @@ class CreationForm extends React.Component {
                      questionIndex={index}
                      questionLayout={questionsLayout[index] ? questionsLayout[index] : {}}
                      onChangeTitle={(title) => this.onChangeQuestionTitle(title, index)}
+                     onChangeIsRequired={(value) => this.onChangeIsRequired(value, index)}
                      onChangeInputType={(inputType) => this.onChangeInputType(inputType, index)}
                      onDeleteQuestion={() => this.onDeleteQuestion(index)}
-                     onChangeInputLabel={(title, inputIndex) => this.onChangeInputLabel(title, index, inputIndex)}
+                     onChangeOptionLabel={(title, inputIndex) => this.onChangeOptionLabel(title, index, inputIndex)}
                      onAddOption={() => this.onAddOption(index)}
                      onDeleteOption={(inputIndex) => this.onDeleteOption(index, inputIndex)}
                      onAddLayout={(y) => this.onAddLayout(y, index)}

@@ -51,7 +51,7 @@ const Header = ({
 const Question = ({
    styles,
    questionDetail, questionIndex, questionLayout,
-   onChangeTitle, onChangeInputType, onDeleteQuestion, onChangeInputLabel, onAddOption, onDeleteOption, onAddLayout
+   onChangeTitle, onChangeIsRequired, onChangeInputType, onDeleteQuestion, onChangeOptionLabel, onAddOption, onDeleteOption, onAddLayout
 }) => {
    const { colors } = useTheme();
    const [menuVisibile, setMenuVisibile] = useState(false);
@@ -131,7 +131,7 @@ const Question = ({
                            style={{ ...styles.input, margin: 0, flex: 5 }}
                            placeholder='Label'
                            value={e}
-                           onChangeText={text => onChangeInputLabel(text, i)}
+                           onChangeText={text => onChangeOptionLabel(text, i)}
                         />
                         <Button
                            style={{ flex: 1 }}
@@ -170,6 +170,7 @@ const Question = ({
             onAddLayout(layout.y)
          }}
       >
+         {/* Header */}
          <Header
             name={questionDetail.inputType.name}
             visible={menuVisibile}
@@ -180,7 +181,7 @@ const Question = ({
             questionIndex={questionIndex}
          />
 
-         {/* Question Title*/}
+         {/* Question Title */}
          <TextInput
             style={{ ...styles.input, flex: 1 }}
             label={'Question Title'}
@@ -189,8 +190,14 @@ const Question = ({
             multiline
          />
 
-
+         {/* Input example */}
          {inputExample}
+
+         {/* Footer */}
+         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+            <Text style={{ marginTop: 5 }}>Required</Text>
+            <Switch value={questionDetail.isRequired} onValueChange={value => onChangeIsRequired(value)} />
+         </View>
       </Card>
    )
 }
