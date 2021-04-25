@@ -1,5 +1,4 @@
 import {
-   COUNTER_CHANGE,
    SAVE_FORM,
    RESET_FORM,
    UPDATE_RESET_STATUS,
@@ -21,11 +20,6 @@ const initialState = {
 
 export default function (state = initialState, action) {
    switch (action.type) {
-      case COUNTER_CHANGE:
-         return {
-            ...state,
-            count: action.payload
-         };
       case SAVE_FORM:
          alert('Form saved sucessful!');
          return {
@@ -48,7 +42,8 @@ export default function (state = initialState, action) {
             formIsReset: false
          }
       case UPDATE_FORM_STATUS:
-         return {...state,
+         return {
+            ...state,
             formIsUpdated: false
          }
       default:

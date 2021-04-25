@@ -1,4 +1,3 @@
-export const COUNTER_CHANGE = 'COUNTER_CHANGE';
 
 export const SAVE_FORM = 'SAVE_FORM';
 export const RESET_FORM = 'RESET_FORM';
