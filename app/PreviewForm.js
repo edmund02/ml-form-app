@@ -33,7 +33,7 @@ class PreviewForm extends React.Component {
 
 
    onUpdateState = async () => {
-      const { form, updateFormStatus } = this.props;
+      const { form } = this.props;
       await this.setState({ loading: true });
       let newAnswers = [];
       for (const question of form.questions) {
@@ -43,11 +43,13 @@ class PreviewForm extends React.Component {
                temp.push(false);
             }
             newAnswers.push(temp);
+         } else if (question.inputType.key === 1004) {
+            newAnswers.push(false);
          } else {
             newAnswers.push('');
          }
       }
-      await this.setState({ ...form, loading: false, answers: newAnswers }, () => updateFormStatus());
+      await this.setState({ ...form, loading: false, answers: newAnswers });
    }
 
    onChangeAnswer = (answer, questionIndex, optionIndex) => {
@@ -128,6 +130,7 @@ class PreviewForm extends React.Component {
          }
 
       }
+
       alert('All inputs are valid, submitted!');
    }
 

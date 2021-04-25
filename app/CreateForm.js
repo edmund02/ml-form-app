@@ -48,7 +48,7 @@ class CreationForm extends React.Component {
       let newQuestions = [...questions];
 
       newQuestions.push({
-         title: '',
+         title: `Question ${questions.length + 1}`,
          inputType: { ...code.inputType[0] },
          isRequired: false,
       });

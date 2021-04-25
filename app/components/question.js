@@ -206,7 +206,7 @@ const Question = ({
             label={'Question Title'}
             value={questionDetail.title}
             onChangeText={text => onChangeTitle(text)}
-            multiline
+            selectTextOnFocus
          />
 
          {/* Input example */}
