@@ -2,7 +2,8 @@ import React from 'react';
 import { Provider } from "react-redux";
 import { Provider as PaperProvider, DefaultTheme } from "react-native-paper";
 import { StatusBar } from 'expo-status-bar';
-import store from "./store";
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from "./store";
 import App from './app/App';
 
 const theme = {
@@ -21,8 +22,10 @@ export default function Root() {
    return (
       <PaperProvider theme={theme}>
          <Provider store={store}>
-            <StatusBar style="light" translucent={false} />
-            <App />
+            <PersistGate loading={null} persistor={persistor}>
+               <StatusBar style="light" translucent={false} />
+               <App />
+            </PersistGate>
          </Provider>
       </PaperProvider>
    );

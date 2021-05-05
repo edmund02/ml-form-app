@@ -2,11 +2,13 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import { StyleSheet, ScrollView, View } from 'react-native';
-import { Card, Button, ActivityIndicator, TextInput } from "react-native-paper";
+import { Card, Button, ActivityIndicator, TextInput, Text, Title } from "react-native-paper";
 import { Ionicons } from '@expo/vector-icons';
 import { saveFormAction, resetFormAction, updateResetStatusAction } from '../../actions';
 import { code } from '../../constants'
 import { Question } from '../components'
+import { getCurrentDateTime } from '../../api';
+import { formatDate } from '../../helper';
 
 class CreationForm extends React.Component {
    constructor(props) {
@@ -18,13 +20,21 @@ class CreationForm extends React.Component {
          questionsLayout: {},
          loading: true,
          lockAutoScroll: true,
+         dateTime: null,
       }
    }
 
-   componentDidMount() {
+   async componentDidMount() {
       const { form } = this.props;
       // get the form data from reducer and set to state
       this.setState({ ...form, loading: false })
+      const dateTimeRes = await getCurrentDateTime();
+      if (typeof dateTimeRes === 'object') {
+         this.setState({ dateTime: dateTimeRes });
+      } else {
+         this.setState({ dateTime: {} });
+         alert(dateTimeRes);
+      }
    }
 
    componentDidUpdate(prevProps, prevState) {
@@ -235,7 +245,7 @@ class CreationForm extends React.Component {
    }
 
    render() {
-      const { title, description, questions, questionsLayout, loading } = this.state;
+      const { title, description, questions, questionsLayout, loading, dateTime } = this.state;
       return (
          loading ?
             <View style={styles.loading}>
@@ -248,6 +258,18 @@ class CreationForm extends React.Component {
                }}
                keyboardShouldPersistTaps='handled'
             >
+
+               <Card style={[styles.container, styles.shadow]}>
+                  <Title>Today's Date Time</Title>
+                  {dateTime ?
+                     <>
+                        <Text>{formatDate(dateTime.currentDateTime ? new Date(dateTime.currentDateTime) : new Date())}</Text>
+                        <Text>{dateTime.dayOfTheWeek || ''}</Text>
+                     </>
+                     :
+                     <ActivityIndicator animating={true} />
+                  }
+               </Card>
                <Card style={[styles.container, styles.shadow, styles.borderTop]}>
                   <TextInput
                      style={[styles.input, styles.inputFormTitle]}
@@ -266,26 +288,28 @@ class CreationForm extends React.Component {
                      multiline
                   />
                </Card>
-               {questions.map((element, index) => (
+               {
+                  questions.map((element, index) => (
 
-                  <Question
-                     key={`${element.inputDetail.key}${index}`}
-                     questionDetail={element}
-                     questionIndex={index}
-                     questionLayout={questionsLayout[index] ? questionsLayout[index] : {}}
-                     onChangeTitle={(title) => this.onChangeQuestionTitle(title, index)}
-                     onChangeIsRequired={(value) => this.onChangeIsRequired(value, index)}
-                     onChangeInputType={(inputDetail) => this.onChangeInputType(inputDetail, index)}
-                     onDeleteQuestion={() => this.onDeleteQuestion(index)}
-                     onChangeOptionLabel={(title, inputIndex) => this.onChangeOptionLabel(title, index, inputIndex)}
-                     onAddOption={() => this.onAddOption(index)}
-                     onDeleteOption={(inputIndex) => this.onDeleteOption(index, inputIndex)}
-                     onAddLayout={(y) => this.onAddLayout(y, index)}
-                     styles={{
-                        ...styles
-                     }}
-                  />
-               ))}
+                     <Question
+                        key={`${element.inputDetail.key}${index}`}
+                        questionDetail={element}
+                        questionIndex={index}
+                        questionLayout={questionsLayout[index] ? questionsLayout[index] : {}}
+                        onChangeTitle={(title) => this.onChangeQuestionTitle(title, index)}
+                        onChangeIsRequired={(value) => this.onChangeIsRequired(value, index)}
+                        onChangeInputType={(inputDetail) => this.onChangeInputType(inputDetail, index)}
+                        onDeleteQuestion={() => this.onDeleteQuestion(index)}
+                        onChangeOptionLabel={(title, inputIndex) => this.onChangeOptionLabel(title, index, inputIndex)}
+                        onAddOption={() => this.onAddOption(index)}
+                        onDeleteOption={(inputIndex) => this.onDeleteOption(index, inputIndex)}
+                        onAddLayout={(y) => this.onAddLayout(y, index)}
+                        styles={{
+                           ...styles
+                        }}
+                     />
+                  ))
+               }
 
                <View style={styles.flexRowSpaceAround} ref={this.myRef} >
                   <Button
@@ -396,4 +420,7 @@ const styles = StyleSheet.create({
       justifyContent: "space-around",
       padding: 10
    },
+   colorBlack: {
+      color: 'black'
+   }
 });
